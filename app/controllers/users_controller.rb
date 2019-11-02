@@ -1,3 +1,8 @@
 class UsersController < ApplicationController
-    
-end
+    get '/signup' do
+        if !logged_in?
+          erb :'users/signup'
+        else
+          redirect to '/games'
+        end
+    end

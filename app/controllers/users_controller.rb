@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    user = User.new(params)
+    user = Users.new(:username => params[:username], :password => params[:password])
     if user.save
       session[:user_id] = user.id
-      redirect to('/games')
+      redirect to('/login')
     else
       redirect to('/signup')
     end

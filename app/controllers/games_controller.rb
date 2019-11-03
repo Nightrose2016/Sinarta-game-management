@@ -10,9 +10,15 @@ class GamesController < ApplicationController
     erb :"/games/new"
   end
 
+  post '/games/new' do
+    games = Games.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher])
+    games.save
+    redirect to('games/index')
+
+  end
+
   # POST: /games
   post "/games" do
-    games = Gamess.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher])
     redirect "/games"
   end
 

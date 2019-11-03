@@ -13,7 +13,7 @@ class GamesController < ApplicationController
   post '/games/new' do
     games = Games.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher])
     if games.save
-      redirect to('/games/index')
+      redirect to('/games')
     else
       redirect to('/new')
     end
@@ -44,4 +44,6 @@ class GamesController < ApplicationController
   delete "/games/:id/delete" do
     redirect "/games"
   end
+
+  get 
 end

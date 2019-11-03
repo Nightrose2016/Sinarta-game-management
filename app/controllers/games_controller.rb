@@ -7,13 +7,15 @@ class GamesController < ApplicationController
 
   # GET: /games/new
   get "/games/new" do
-    erb :"/games/new"
+    erb :'games/new'
   end
 
   post '/games/new' do
     games = Games.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher])
-    games.save
-    redirect to('games/index')
+    if games.save
+      redirect to('games/index')
+    else
+      redirect to('games/new')
 
   end
 

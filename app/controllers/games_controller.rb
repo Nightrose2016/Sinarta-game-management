@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   # GET: /games
   get "/games" do
-    erb :"/games/index.html"
+    erb :"/games/index"
   end
 
   # GET: /games/new

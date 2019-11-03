@@ -20,6 +20,10 @@ class GamesController < ApplicationController
 
   end
 
+  get "/library" do
+    erb :"games/library"
+  end
+
   # POST: /games
   post "/games" do
     redirect "/games"
@@ -44,6 +48,4 @@ class GamesController < ApplicationController
   delete "/games/:id/delete" do
     redirect "/games"
   end
-
-  get 
 end

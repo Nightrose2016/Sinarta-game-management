@@ -1,7 +1,10 @@
 <h2>Your games</h2>
 
+<a href="/new">Add New Game</a>
+
 <% @games.each do |game| %>
     <div>
         <a href="games/<%=game.id%>"> <%=game.name%> <a>
     </div>
 <% end %>
+

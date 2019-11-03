@@ -7,11 +7,12 @@ class GamesController < ApplicationController
 
   # GET: /games/new
   get "/games/new" do
-    erb :"/games/new.html"
+    erb :"/games/new"
   end
 
   # POST: /games
   post "/games" do
+    games = Gamess.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher])
     redirect "/games"
   end
 

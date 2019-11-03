@@ -1,6 +1,7 @@
-<h2>Your game library</h2>
-<div>
+<h2>Your games</h2>
+
 <% @games.each do |game| %>
-        <a href="buildings/<%=game.id%>"> <%=game.name%> <a>
+    <div>
+        <a href="games/<%=game.id%>"> <%=game.name%> <a>
+    </div>
 <% end %>
-</div>

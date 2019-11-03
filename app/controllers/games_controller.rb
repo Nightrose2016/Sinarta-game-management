@@ -21,6 +21,7 @@ class GamesController < ApplicationController
   end
 
   get "/library" do
+    @games = Games.all
     erb :"games/library"
   end
 

@@ -1,1 +1,8 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<%= @game.name %>
+<br><br>
+
+<a href="/games/<%= @game.id %>/edit">Edit game</a>
+<form class="" action="/games" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Tweet">
+</form

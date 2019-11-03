@@ -16,6 +16,7 @@ class GamesController < ApplicationController
       redirect to('games/index')
     else
       redirect to('games/new')
+    end
 
   end
 

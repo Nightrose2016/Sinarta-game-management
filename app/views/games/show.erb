@@ -1,5 +1,10 @@
-<%= @game.name %>
+<div class="contents">
+<h1><%= @game.name %></h1>
+  <h3><%= @recipe.genre.gsub(/\n/, '<br>') %></h3><br>
+  <h3><%= @recipe.developer.gsub(/\n/, '<br>') %></h3><br>
+  <h3><%= @game.publisher.gsub(/\n/, '<br>') %></h3><br>
 <br><br>
+
 
 <a href="/games/<%= @game.id %>/edit">Edit game</a>
 <form method="POST" action="/games/<%= @game.id %>">

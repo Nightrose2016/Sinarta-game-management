@@ -5,10 +5,8 @@
 <h2>Your games</h2>
 
 <br><a href="/new">Add New Game</a><br>
-
+<div class="games">
 <% @games.each do |game| %>
-    <div>
-        <a href="games/<%= game.id%>"><%= game.name%> <a>
-    </div>
-<% end %>
+        <h5><a href="games/<%= game.id%>"><%= game.name%> <a></h5>
+<% end %></div>
    

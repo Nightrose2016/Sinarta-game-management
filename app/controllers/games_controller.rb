@@ -32,12 +32,12 @@ class GamesController < ApplicationController
 
   # GET: /games/5
   get "/games/:id" do
-    erb :"/games/show.html"
+    erb :"/games/show"
   end
 
   # GET: /games/5/edit
   get "/games/:id/edit" do
-    erb :"/games/edit.html"
+    erb :"/games/edit"
   end
 
   # PATCH: /games/5

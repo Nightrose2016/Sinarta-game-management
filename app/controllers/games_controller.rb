@@ -38,7 +38,12 @@ class GamesController < ApplicationController
 
   # GET: /games/5/edit
   get "/games/:id/edit" do
-    erb :"/games/edit"
+    @games = Games.find_by_id(params[:id])
+    if @games.user_id == current_user.id
+      erb :"games/edit"
+    else
+      redirect "/games"
+  end
   end
 
   # PATCH: /games/5
@@ -57,9 +62,9 @@ class GamesController < ApplicationController
     @games = Games.find_by_id(params[:id])
     if @games.user.id == current_user.id
       @games.destroy
-      redirect "/recipes"
+      redirect "/games"
     else
-      redirect "/recipes"
+      redirect "/games"
     end
   end
 end

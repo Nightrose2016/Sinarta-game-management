@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   get "/games" do
     if logged_in?
-      @games = current_user.games.all
+      @games = Games.all
       erb :"games/index"
     # else
     #   erb :"/sessions/error" #plan on adding errors later

@@ -2,6 +2,7 @@ class GamesController < ApplicationController
 
   # GET: /games
   get "/games" do
+    @games = Games.all
     erb :"/games/index"
   end
 
@@ -23,7 +24,7 @@ class GamesController < ApplicationController
 
   get "/library" do
     @games = Games.all
-    erb :"games/library"
+    erb :"games/index"
   end
 
   # POST: /games

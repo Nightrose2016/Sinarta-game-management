@@ -50,7 +50,6 @@ class GamesController < ApplicationController
     else
       redirect "/games"
   end
-  end
 
   # PATCH: /games/5
   patch "/games/:id" do

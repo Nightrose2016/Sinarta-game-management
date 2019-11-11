@@ -6,8 +6,9 @@ class GamesController < ApplicationController
   end
 
   # GET: /new
-  get "/new" do
-    erb :'games/new'
+  get "/recipes/new" do
+    @users = Users.all
+    erb :"games/new"
   end
 
   post '/games/new' do

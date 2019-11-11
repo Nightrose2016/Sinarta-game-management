@@ -1,4 +1,13 @@
-<h3>Would you like to make a new game or view all your curent games</h3>
+<h3>Here are all your games. Would you like to add a new game </h3>
 <div>
 <a href="/new">Add New Game</a>
-<a href="/library"> All games</a>
+
+<h2>Your games</h2>
+
+<br><a href="/new">Add New Game</a><br>
+<div class="games">
+<% @games.each do |game| %>
+        <h5><a href="games/<%= game.id%>"><%= game.name%> <a></h5>
+<% end %></div>
+<br><br>
+<a href="/new">Add New Game</a>

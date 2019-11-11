@@ -9,6 +9,15 @@ class GamesController < ApplicationController
     end
   end
 
+  post "/games" do
+    @games = current_user.games.build(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer])
+    if @games.save
+      redirect "/games/#{@games.id}"
+    else
+      redirect "/games/new"
+    end
+  end
+
   get "/games/new" do
     @users = Users.all
     erb :"games/new"
@@ -23,30 +32,12 @@ class GamesController < ApplicationController
     end
   end
 
-  post "/games" do
-    @games = current_user.games.build(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer])
-    if @games.save
-      redirect "/games/#{@games.id}"
-    else
-      redirect "/games/new"
-    end
-  end
-
   get "/games/:id" do
     @games = Games.find_by_id(params[:id])
     if @games.user_id == current_user.id
       erb :"games/show"
     else
       redirect "/games/index"
-    end
-  end
-
-  get "/games/:id/edit" do
-    @games = Games.find_by_id(params[:id])
-    if @games.user_id == current_user.id
-      erb :"games/edit"
-    else
-      redirect "/games"
     end
   end
 
@@ -60,11 +51,20 @@ class GamesController < ApplicationController
     end
   end
 
-  delete "/recipes/:id" do
+  delete "/games/:id" do
     @games = Games.find_by_id(params[:id])
     if @games.user.id == current_user.id
       @games.destroy
       redirect "/games"
+    else
+      redirect "/games"
+    end
+  end
+
+  get "/games/:id/edit" do
+    @games = Games.find_by_id(params[:id])
+    if @games.user_id == current_user.id
+      erb :"games/edit"
     else
       redirect "/games"
     end

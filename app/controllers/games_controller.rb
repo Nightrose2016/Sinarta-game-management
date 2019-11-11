@@ -33,7 +33,12 @@ class GamesController < ApplicationController
 
   # GET: /games/5
   get "/games/:id" do
-    erb :"/games/show"
+    @games = Games.find_by_id(params[:id])
+    if @games.user_id == current_user.id
+      erb :"games/show"
+    else
+      redirect "/library"
+    end
   end
 
   # GET: /games/5/edit

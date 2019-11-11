@@ -46,9 +46,9 @@ class GamesController < ApplicationController
     @games = Games.find_by_id(params[:id])
     params.delete("_method")
     if @games.user.id == current_user.id && @games.update(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer], user_id: current_user.id)
-      redirect "/recipes/#{@recipe.id}"
+      redirect "/games/#{@games.id}"
     else
-      redirect "/recipes/#{@recipe.id}/edit"
+      redirect "/games/#{@games.id}/edit"
     end
   end
 

@@ -49,6 +49,7 @@ class GamesController < ApplicationController
       erb :"games/edit"
     else
       redirect "/games"
+    end
   end
 
   # PATCH: /games/5

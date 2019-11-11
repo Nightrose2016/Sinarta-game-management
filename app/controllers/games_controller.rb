@@ -43,7 +43,13 @@ class GamesController < ApplicationController
 
   # PATCH: /games/5
   patch "/games/:id" do
-    redirect "/games/:id"
+    @games = Games.find_by_id(params[:id])
+    params.delete("_method")
+    if @games.user.id == current_user.id && @games.update(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer], user_id: current_user.id)
+      redirect "/recipes/#{@recipe.id}"
+    else
+      redirect "/recipes/#{@recipe.id}/edit"
+    end
   end
 
   # DELETE: /games/5/delete

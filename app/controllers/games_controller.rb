@@ -38,7 +38,7 @@ class GamesController < ApplicationController
     if @games.user_id == current_user.id
       erb :"games/show"
     else
-      redirect "/library"
+      redirect "games/index"
     end
   end
 

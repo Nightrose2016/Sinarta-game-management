@@ -12,11 +12,11 @@ class ApplicationController < Sinatra::Base
   get "/" do
     erb :index
   end
-  
+
   helpers do
 
     def current_user
-      Users.find_by(id: session[:user_id])
+      @user ||= Users.find_by(id: session[:user_id])
     end
 
     def logged_in?

@@ -1,48 +1,46 @@
 class GamesController < ApplicationController
 
-  # GET: /games
   get "/games" do
-    @games = Games.all
-    erb :"/games/index"
+    if logged_in?
+      @games = current_user.games.all
+      erb :"games/index"
+    # else
+    #   erb :"/sessions/error" #plan on adding errors later
+    end
   end
 
-  # GET: /new
-  get "games/new" do
+  get "/games/new" do
     @users = Users.all
     erb :"games/new"
   end
 
-  post 'games/new' do
-    games = Games.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher])
+  post '/games/new' do
+    @games = Games.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher])
     if games.save
       redirect to('/games')
     else
       redirect to('/new')
     end
-
   end
 
-  get "/library" do
-    @games = Games.all
-    erb :"games/index"
-  end
-
-  # POST: /games
   post "/games" do
-    redirect "/games"
+    @games = current_user.games.build(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer])
+    if @games.save
+      redirect "/games/#{@games.id}"
+    else
+      redirect "/games/new"
+    end
   end
 
-  # GET: /games/5
   get "/games/:id" do
     @games = Games.find_by_id(params[:id])
     if @games.user_id == current_user.id
       erb :"games/show"
     else
-      redirect "games/index"
+      redirect "/games/index"
     end
   end
 
-  # GET: /games/5/edit
   get "/games/:id/edit" do
     @games = Games.find_by_id(params[:id])
     if @games.user_id == current_user.id
@@ -52,7 +50,6 @@ class GamesController < ApplicationController
     end
   end
 
-  # PATCH: /games/5
   patch "/games/:id" do
     @games = Games.find_by_id(params[:id])
     params.delete("_method")
@@ -63,7 +60,6 @@ class GamesController < ApplicationController
     end
   end
 
-  # DELETE: /games/5/delete
   delete "/recipes/:id" do
     @games = Games.find_by_id(params[:id])
     if @games.user.id == current_user.id

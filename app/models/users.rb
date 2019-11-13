@@ -5,7 +5,4 @@ class Users < ActiveRecord::Base
     validates :username, presence: true
     validates :password, presence: true
     
-    def slug
-        self.username.downcase.gsub(" ", "-")
-    end
 end

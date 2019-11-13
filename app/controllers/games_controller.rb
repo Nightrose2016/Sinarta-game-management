@@ -71,7 +71,7 @@ class GamesController < ApplicationController
 
   delete "/games/:id" do
     @games = Games.find_by_id(params[:id])
-    if @games.users.id == current_user.id
+    if @games.users_id == current_user.id
       @games.destroy
       redirect "/games"
     else

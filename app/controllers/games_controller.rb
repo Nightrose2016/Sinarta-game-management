@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   get "/games" do
     if logged_in?
       # binding.pry
-      @games = current_user.games.all
+      @games = Games.all
       erb :"games/index"
     else
       erb :"/users/signin"

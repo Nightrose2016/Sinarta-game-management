@@ -1,4 +1,4 @@
-<form action='/games/<%= @games.id %>' method="post">
+<form action='/games/<%= @games.id %>' method="patch">
   <input type="hidden" id="hidden" name="_method" user_id="hidden" value="PATCH">
 
   <br><input type="text" name="name" value="<%= @games.name %>" required="required"><br>

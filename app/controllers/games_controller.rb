@@ -23,17 +23,20 @@ class GamesController < ApplicationController
     erb :"games/new"
   end
 
-  post '/games/new' do
-    @games = Games.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher])
-    if games.save
+  post '/new' do
+    @games = Games.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher], user_id: current_user.id)
+    # binding.pry
+    if @games.save
       redirect to('/games')
     else
       redirect to('/new')
     end
+
   end
 
   get "/games/:id" do
     @games = Games.find_by_id(params[:id])
+    # binding.pry
     if @games.user_id == current_user.id
       erb :"games/show"
     else

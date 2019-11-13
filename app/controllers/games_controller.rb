@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   get "/games" do
     if logged_in?
-      @games = Games.all
+      @games = current_user.games.all
       erb :"games/index"
     # else
     #   erb :"/sessions/error" #plan on adding errors later
@@ -10,7 +10,7 @@ class GamesController < ApplicationController
   end
 
   post "/games" do
-    @games = current_user.games.build(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer])
+    @games = current_user.games.build(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer], user_id: current_user.id)
     if @games.save
       redirect "/games/#{@games.id}"
     else
@@ -45,13 +45,7 @@ class GamesController < ApplicationController
   end
 
   post '/games/:id' do
-    @games = Games.find_by_id(params[:id])
-    # binding.pry
-    if @games.user_id == current_user.id
-      erb :"games/show"
-    else
-      redirect "/games/index"
-    end
+    "hello world"
   end
 
   patch "/games/:id" do

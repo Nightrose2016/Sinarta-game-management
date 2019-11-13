@@ -1,5 +1,5 @@
 <form action='/games/<%= @games.id %>' method="post">
-  <input type="hidden" id="hidden" name="_method" value="PATCH">
+  <input type="hidden" id="hidden" name="_method" user_id="hidden" value="PATCH">
 
   <br><input type="text" name="name" value="<%= @games.name %>" required="required"><br>
   <br><input type="text" name="name" value="<%= @games.genre %>" required="required"><br>

@@ -46,22 +46,32 @@ class GamesController < ApplicationController
   end
 
   post '/games/:id' do
-    "hello world"
-  end
-
-  patch "/games/:id" do
+    # binding.pry
     @games = Games.find_by_id(params[:id])
     params.delete("_method")
-    if @games.user.id == current_user.id && @games.update(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer], user_id: current_user.id)
+    if @games.user_id == current_user.id && @games.update(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer], user_id: current_user.id)
+      
       redirect "/games/#{@games.id}"
     else
       redirect "/games/#{@games.id}/edit"
     end
   end
 
+  # patch "/games/:id" do
+  #   binding.pry
+  #   @games = Games.find_by_id(params[:id])
+  #   params.delete("_method")
+  #   if @games.user.id == current_user.id && @games.update(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer], user_id: current_user.id)
+      
+  #     redirect "/games/#{@games.id}"
+  #   else
+  #     redirect "/games/#{@games.id}/edit"
+  #   end
+  # end
+
   delete "/games/:id" do
     @games = Games.find_by_id(params[:id])
-    if @games.user.id == current_user.id
+    if @games.users.id == current_user.id
       @games.destroy
       redirect "/games"
     else

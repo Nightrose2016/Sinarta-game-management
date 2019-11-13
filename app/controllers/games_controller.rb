@@ -44,6 +44,16 @@ class GamesController < ApplicationController
     end
   end
 
+  post '/games/:id' do
+    @games = Games.find_by_id(params[:id])
+    # binding.pry
+    if @games.user_id == current_user.id
+      erb :"games/show"
+    else
+      redirect "/games/index"
+    end
+  end
+
   patch "/games/:id" do
     @games = Games.find_by_id(params[:id])
     params.delete("_method")

@@ -1,10 +1,10 @@
-<form action='/games/<%= @game.id %>' method="post">
+<form action='/games/<%= @games.id %>' method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
 
-  <br><input type="text" name="name" value="<%= @game.name %>" required="required"><br>
-  <br><input type="text" name="name" value="<%= @game.genre %>" required="required"><br>
-  <br><input type="text" name="name" value="<%= @game.developer %>"><br>
- <br><input type="text" name="name" value="<%= @game.publisher %>"><br>
+  <br><input type="text" name="name" value="<%= @games.name %>" required="required"><br>
+  <br><input type="text" name="name" value="<%= @games.genre %>" required="required"><br>
+  <br><input type="text" name="name" value="<%= @games.developer %>"><br>
+ <br><input type="text" name="name" value="<%= @games.publisher %>"><br>
 
   <input type="submit" value="update">
 

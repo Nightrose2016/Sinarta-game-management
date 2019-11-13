@@ -1,13 +1,13 @@
 <div class="contents">
-<h1><%= @game.name %></h1>
-  <h3><%= @game.genre.gsub(/\n/, '<br>') %></h3><br>
-  <h3><%= @game.developer.gsub(/\n/, '<br>') %></h3><br>
-  <h3><%= @game.publisher.gsub(/\n/, '<br>') %></h3><br>
+<h1><%= @games.name %></h1>
+  <h3>Genre: <%= @games.genre.gsub(/\n/, '<br>') %></h3><br>
+  <h3>Developer: <%= @games.developer.gsub(/\n/, '<br>') %></h3><br>
+  <h3>Publisher: <%= @games.publisher.gsub(/\n/, '<br>') %></h3><br>
 <br><br>
 
 
-<a href="/games/<%= @game.id %>/edit">Edit game</a>
-<form method="POST" action="/games/<%= @game.id %>">
+<a href="/games/<%= @games.id %>/edit">Edit game</a>
+<form method="POST" action="/games/<%= @games.id %>">
         <input type="hidden" id="hidden" name="_method" value="DELETE">
         <input type="submit" value="delete">
         </form>

@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   get "/games" do
     if logged_in?
       # binding.pry
-      @games = Games.all
+      @games = current_user.games.all
       erb :"games/index"
     else
       erb :"/users/signin"
@@ -20,12 +20,12 @@ class GamesController < ApplicationController
   end
 
   get "/games/new" do
-    @users = Users.all
+    @users = User.all
     erb :"games/new"
   end
 
   post '/new' do
-    @games = Games.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher], user_id: current_user.id)
+    @games = Game.new(:name => params[:name], :genre => params[:genre], :developer => params[:developer], :publisher => params[:publisher], user_id: current_user.id)
     # binding.pry
     if @games.save
       redirect to('/games')
@@ -36,7 +36,7 @@ class GamesController < ApplicationController
   end
 
   get "/games/:id" do
-    @games = Games.find_by_id(params[:id])
+    @games = Game.find_by_id(params[:id])
     # binding.pry
     if @games.user_id == current_user.id
       erb :"games/show"
@@ -47,7 +47,7 @@ class GamesController < ApplicationController
 
   post '/games/:id' do
     # binding.pry
-    @games = Games.find_by_id(params[:id])
+    @games = Game.find_by_id(params[:id])
     params.delete("_method")
     if @games.user_id == current_user.id && @games.update(name: params[:name], genre: params[:genre], publisher: params[:publisher], developer: params[:developer], user_id: current_user.id)
       
@@ -70,7 +70,7 @@ class GamesController < ApplicationController
   # end
 
   delete "/games/:id" do
-    @games = Games.find_by_id(params[:id])
+    @games = Game.find_by_id(params[:id])
     if @games.user_id == current_user.id
       @games.destroy
       redirect "/games"
@@ -80,7 +80,7 @@ class GamesController < ApplicationController
   end
 
   get "/games/:id/edit" do
-    @games = Games.find_by_id(params[:id])
+    @games = Game.find_by_id(params[:id])
     if @games.user_id == current_user.id
       erb :"games/edit"
     else
